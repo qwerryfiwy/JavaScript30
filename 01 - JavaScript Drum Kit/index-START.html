@@ -59,7 +59,24 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+ document.querySelectorAll(".key").forEach((key) => { //QUERY=QUESTION QUERY SELECTORALL MEAN = GET EVERY QUERY AND SELECT EACH KEY
+  key.addEventListener("click", function () { //add event listener to each key
+    const keyCode = key.getAttribute("data-key"); //get the data-key attribute of the key that was clicked
+    const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
+  });
+});
 
+document.addEventListener("keydown", function (event) {
+  const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+  const keyDiv = document.querySelector(`.key[data-key="${event.keyCode}"]`);
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play();
+});
 </script>
 
 
